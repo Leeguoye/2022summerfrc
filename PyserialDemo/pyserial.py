@@ -11,7 +11,7 @@ def main():
     flag = False
 
     while not(flag):
-        b = ser.readline().decode("utf-8")
+        b = ser.readline().decode("utf-8").strip()
         print(b)
         angle.append(b)
         plt.plot(angle,'o')
