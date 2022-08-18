@@ -13,6 +13,10 @@ def main():
     while not(flag):
         b = ser.readline().decode("utf-8").strip()
         print(b)
+        try:
+            b = round(float(b),2)
+        except Exception as e:
+            print('unable to float b, due to ',e)
         angle.append(b)
         plt.plot(angle,'o')
         flag = keyboard.is_pressed("q")
