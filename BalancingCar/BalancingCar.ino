@@ -41,6 +41,9 @@ VectorFloat gravity;    // [x, y, z]            gravity vector
 float euler[3];         // [psi, theta, phi]    Euler angle container
 float ypr[3];           // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
+//timersetup
+int a;
+
 // ================================================================
 // ===               INTERRUPT DETECTION ROUTINE                ===
 // ================================================================
@@ -70,7 +73,7 @@ double movingAngleOffset = 0.1;
 double input, output;
 
 //adjust these values to fit your own design
-double Kp = 100;   
+double Kp = 30;   
 double Kd = 0.2;
 double Ki = 3;
 PID pid(&input, &output, &setpoint, Kp, Ki, Kd, DIRECT);
@@ -82,7 +85,7 @@ int speed;
 // ================================================================
 
 void setup() {
-
+    a=0;
     // join I2C bus (I2Cdev library doesn't do this automatically)
     #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
         Wire.begin();
@@ -178,9 +181,25 @@ void setup() {
 // ================================================================
 // ===                    MAIN PROGRAM LOOP                     ===
 // ================================================================
+void printf() {
+  while(true){
+    if (a<= 100){
+      a+=1;
+      break;
+        }
+    else{
+      Serial.println(ypr[1] * 180/M_PI);
+      a=0;
+      break; 
+        } 
+    }
+    
+  }
 
-void loop() {
-  Serial.println(ypr[1] * 180/M_PI);
+
+  
+void loop() {  
+  printf();
   // if programming failed, don't try to do anything
   if (!dmpReady) return;
   // read a packet from FIFO
