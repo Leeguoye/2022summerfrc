@@ -12,8 +12,12 @@ def main():
 
     plt.ion()
     while not(flag):
-        b = ser.readline().decode("utf-8")
+        b = ser.readline().decode("utf-8").strip()
         print(b)
+        try:
+            b = round(float(b),2)
+        except Exception as e:
+            print('unable to float b, due to ',e)
         angle.append(b)
         plt.plot(angle,'o')
         plt.pause(0.001)
