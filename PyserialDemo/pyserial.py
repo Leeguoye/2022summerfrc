@@ -19,7 +19,7 @@ def main():
         except Exception as e:
             print('unable to float b, due to ',e)
         angle.append(b)
-        plt.plot(angle,'o')
+        plt.plot(angle)
         plt.pause(0.001)
         plt.ioff() # close window
         flag = keyboard.is_pressed("q")
