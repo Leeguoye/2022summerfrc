@@ -181,7 +181,7 @@ void setup() {
 // ================================================================
 // ===                    MAIN PROGRAM LOOP                     ===
 // ================================================================
-void printf() {
+void printdot() {
   while(true){
     if (a<= 100){
       a+=1;
@@ -199,7 +199,7 @@ void printf() {
 
   
 void loop() {  
-  printf();
+  printdot();
   // if programming failed, don't try to do anything
   if (!dmpReady) return;
   // read a packet from FIFO
